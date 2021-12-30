@@ -11,7 +11,7 @@ interface IProductProps {
 export function Product({ name, price, image, onPress }: IProductProps) {
     return (
         <TouchableOpacity style={styles.card}  onPress={onPress}>
-            <Image style={styles.thumb} source={image as any} />
+            <Image style={styles.thumb} source={{ uri: image}} />
             <View>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.price}> $ {price}</Text>
@@ -23,23 +23,36 @@ export function Product({ name, price, image, onPress }: IProductProps) {
 
 const styles = StyleSheet.create({
     card: {
-        width: 100,
+        backgroundColor: "#ddd",
+        borderRadius: 20,
+        shadowOpacity: 0.25,
+        shadowRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        elevation: 1,
+        marginVertical: 18
     },
     thumb: {
-        width: 100,
-        height: 100,
+        height: 289,
+        borderTopLeftRadius: 14,
+        borderTopRightRadius: 14,
+        width:'100%',
     },
     infoContainer: {
-        flex: 1,
         padding: 25,
     },
     name: {
-        fontSize: 16,
+        fontSize: 21,
+        marginLeft: 10,
         fontWeight: 'normal',
     },
     price: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
+        marginLeft: 10,
         marginBottom: 10,
     }
 
