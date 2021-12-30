@@ -11,7 +11,7 @@ const PRODUCTS = [
         name: 'Product 2',
         price: 200,
         image: 'https://picsum.photos/200/300/?random',
-        description: 'Product 2 description',
+        description: 'lore ipsum lorema',
     },
     {
         id: 3,
