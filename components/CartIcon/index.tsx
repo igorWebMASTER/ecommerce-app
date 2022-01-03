@@ -22,13 +22,16 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
         backgroundColor: "#515b8c",
         height: 40,
-        padding: 15,
-        borderRadius: 5,
+        padding: 10,
+        borderRadius: 38 / 2,
+        marginBottom:10,
         alignItems: "center",
         justifyContent: "center",
     },
     text: {
         color: "#fff",
         fontWeight: "normal",
+        fontSize: 12,
     }
+    
 })

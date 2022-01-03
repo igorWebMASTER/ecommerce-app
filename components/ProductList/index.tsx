@@ -12,7 +12,7 @@ export function ProductList({ navigation }: any) {
             <Product {...product} 
                 onPress={() => {
                     navigation.navigate('ProductDetails', {
-                        product: product.id
+                        productId: product.id
                     })
                 }}
             />
@@ -22,7 +22,7 @@ export function ProductList({ navigation }: any) {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-     setProducts(getProducts() as any)
+        setProducts(getProducts() as any)
     },[])
     
     return (

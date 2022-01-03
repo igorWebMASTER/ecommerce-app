@@ -1,19 +1,18 @@
-import React, { useContext, useState } from 'react'
-import { View, Text, ScrollView, Image } from 'react-native';
-import { Button } from 'react-native-elements';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useContext, useEffect, useState } from 'react'
+import { View, Text, Button, ScrollView,SafeAreaView, Image, StyleSheet } from 'react-native';
 import { CartContext } from '../context/cardContent';
 import { getProduct } from '../services/productService';
 
-export function ProductDetails() {
-    const { productId } = useState({});
+export function ProductDetails({ route }) {
+    const { productId } = route.params;
+    
     const [product, setProduct] = useState({});
 
     const { addItemToCart } = useContext(CartContext);
 
     useEffect(() => {
-        setProduct(getProduct(product.id));
-    }, []);
+        setProduct(getProduct(productId));
+    });
 
     function onAddToCart(){
         addItemToCart(product.id);
@@ -22,16 +21,21 @@ export function ProductDetails() {
 
     return (
         <SafeAreaView>
-          <ScrollView>
-              <Image style={styles.image} source={{ uri: product.image }} />
-              <View style={styles.infoContainer}>
-                    <Text style={styles.title}>{product.name}</Text> 
-                    <Text style={styles.price}>R$ {product.price}</Text> 
-                    <Text style={styles.description}>{product.description}</Text>
-                        <Button title="Adicionar ao carrinho" onPress={onAddToCart} />
-                    </Text> 
-              </View>
-          </ScrollView>
+          {product && product !== null && (
+                <>
+                    <Image style={styles.image} source={{ uri : product.image }} />
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.title}>{product.name}</Text> 
+                        <Text style={styles.price}>R$ {product.price}</Text> 
+                        <Text style={styles.description}>{product.description}</Text>
+                        <Button 
+                            style={styles.buttonAddToCart}
+                            title="Adicionar ao carrinho" 
+                            onPress={onAddToCart} 
+                        />
+                    </View>
+                </>
+          )}
         </SafeAreaView>
     );
 }
@@ -71,5 +75,8 @@ const styles = StyleSheet.create({
         fontWeight: "normal",
         color:"#333",
         marginBottom: 10,
+    },
+    buttonAddToCart: {
+        backgroundColor: "#f00",
     }
 })

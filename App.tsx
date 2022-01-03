@@ -4,6 +4,10 @@ import { ProductList } from './components/ProductList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CartProvider } from './context/cardContent';
+import { StyleSheet } from 'react-native';
+import { CartIcon } from './components/CartIcon';
+import { ProductDetails } from './screens/ProductDetails';
+import { Carts } from './screens/Carts';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,17 +21,26 @@ function App() {
               component={ProductList} 
               options={({navigation}) => ({
                 title: 'Products',
-                // headerTitleStyle: styles.headerTitle,
-                // headerRight: () => 
+                headerTitleStyle: styles.headerTitle,
+                headerRight: () => <CartIcon navigation={navigation} />
               })}
             />
           <Stack.Screen 
               name="ProductDetails" 
-              component={ProductList} 
+              component={ProductDetails} 
               options={({navigation}) => ({
-                title: 'Products',
-                // headerTitleStyle: styles.headerTitle,
-                // headerRight: () => 
+                title: 'Product details',
+                headerTitleStyle: styles.headerTitle,
+                headerRight: () => <CartIcon navigation={navigation} />
+              })}
+            />
+          <Stack.Screen 
+              name="Cart" 
+              component={Carts} 
+              options={({navigation}) => ({
+                title: 'Cart',
+                headerTitleStyle: styles.headerTitle,
+                headerRight: () => <CartIcon navigation={navigation} />
               })}
             />
         </Stack.Navigator>
@@ -38,3 +51,10 @@ function App() {
 
 
 export default App;
+
+
+const styles = StyleSheet.create({
+  headerTitle: {
+    fontSize: 18,
+  },
+})
